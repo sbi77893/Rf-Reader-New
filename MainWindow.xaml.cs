@@ -605,10 +605,10 @@ namespace RfReader_demo
                     }
                     else
                     {
-                        MessageBox.Show("Your Port Name or Device Name not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtLogs.Document.Blocks.Add(new Paragraph(new Run("Your Port Name or Device Name not found. (" + DateTime.Now.ToString() + ")")));
-                        InsertingLogTextToLogFile("Your Port Name or Device Name not found. (" + DateTime.Now.ToString() + ")");
-                        SentrySdk.CaptureMessage("Your Port Name or Device Name not found. (" + DateTime.Now.ToString() + ")");
+                        MessageBox.Show("Your Port Name or Table Name not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        txtLogs.Document.Blocks.Add(new Paragraph(new Run("Your Port Name or Table Name not found. (" + DateTime.Now.ToString() + ")")));
+                        InsertingLogTextToLogFile("Your Port Name or Table Name not found. (" + DateTime.Now.ToString() + ")");
+                        SentrySdk.CaptureMessage("Your Port Name or Table Name not found. (" + DateTime.Now.ToString() + ")");
                         return false;
                     }
                 }
@@ -850,13 +850,13 @@ namespace RfReader_demo
 
                     if (txt_DeviceName.Text == null || txt_DeviceName.Text.Length < 1 || getPort_FromComboBox == null || getPort_FromComboBox.Length < 1)
                     {
-                        MessageBox.Show("Please Enter Device Name or Device Port.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Please Enter Table Name or Device Port.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         txt_DeviceName.Text = "";
                         txt_DevicePort.Text = "";
                         comboBox.SelectedItem = null;
-                        txtLogs.Document.Blocks.Add(new Paragraph(new Run("Please Enter Device Name or Device Port. (" + DateTime.Now.ToString() + ")")));
-                        InsertingLogTextToLogFile("Please Enter Device Name or Device Port. (" + DateTime.Now.ToString() + ")");
-                        SentrySdk.CaptureMessage("Please Enter Device Name or Device Port.");
+                        txtLogs.Document.Blocks.Add(new Paragraph(new Run("Please Enter Table Name or Device Port. (" + DateTime.Now.ToString() + ")")));
+                        InsertingLogTextToLogFile("Please Enter Table Name or Device Port. (" + DateTime.Now.ToString() + ")");
+                        SentrySdk.CaptureMessage("Please Enter Table Name or Device Port.");
                     }
                     else
                     {
@@ -1178,18 +1178,18 @@ namespace RfReader_demo
                         }
                         else
                         {
-                            MessageBox.Show("Please enter Device Name and Device Port in Device Configuration.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            txtLogs.Document.Blocks.Add(new Paragraph(new Run("Please enter Device Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")")));
-                            InsertingLogTextToLogFile("Please enter Device Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
-                            SentrySdk.CaptureMessage("Please enter Device Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
+                            MessageBox.Show("Please enter Table Name and Device Port in Device Configuration.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            txtLogs.Document.Blocks.Add(new Paragraph(new Run("Please enter Table Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")")));
+                            InsertingLogTextToLogFile("Please enter Table Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
+                            SentrySdk.CaptureMessage("Please enter Table Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Please enter Device Name and Device Port in Device Configuration.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        txtLogs.Document.Blocks.Add(new Paragraph(new Run("Please enter Device Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")")));
-                        InsertingLogTextToLogFile("Please enter Device Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
-                        SentrySdk.CaptureMessage("Please enter Device Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
+                        MessageBox.Show("Please enter Table Name and Device Port in Device Configuration.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        txtLogs.Document.Blocks.Add(new Paragraph(new Run("Please enter Table Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")")));
+                        InsertingLogTextToLogFile("Please enter Table Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
+                        SentrySdk.CaptureMessage("Please enter Table Name and Device Port in Device Configuration. (" + DateTime.Now.ToString() + ")");
                     }
                 }
             }
