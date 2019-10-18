@@ -1,0 +1,168 @@
+﻿<Window x:Class="RfReader_demo.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RfReader_demo"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Login" Height="600" Width="400" WindowStartupLocation="CenterScreen" FocusManager.FocusedElement="{x:Reference txtbx_UserName}" 
+        BorderThickness="1" BorderBrush="Black" WindowStyle="None"  ResizeMode="NoResize" >
+    <Grid RenderTransformOrigin="0.485,0.49">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="{DynamicResource {x:Static SystemColors.ActiveCaptionTextColorKey}}" Offset="0.231"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBox x:Name="txtbx_UserName" Height="33" Margin="58,199,58,0" TextWrapping="Wrap" Text="" 
+                 VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Background="Transparent" CaretBrush="White"
+                 FontSize="18" Foreground="White" FontFamily="Calibri" Padding="4, 2, 0, 0" BorderThickness="2" BorderBrush="White" Opacity="1">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.197"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <PasswordBox x:Name="txtbx_Password" Height="33" Margin="58,297,58,0"
+                 VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Background="Transparent" CaretBrush="White"
+                 FontSize="18" Foreground="White" FontFamily="Calibri" Padding="4, 2, 0, 0" BorderThickness="2" BorderBrush="White" Opacity="1">
+        </PasswordBox>
+
+        <Label x:Name="lbl_LoginHeader" Content="LOGIN" HorizontalContentAlignment="Center" Margin="140,69,139,0" VerticalAlignment="Top" 
+               Foreground="White" FontSize="34" FontWeight="UltraBold"/>
+        <Button x:Name="btn_Login" IsDefault="True" Content="Login" HorizontalAlignment="Left" Margin="79,390,0,0" VerticalAlignment="Top" Width="113" Height="37" Click="btn_Login_Click" >
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="FontFamily" Value="Calibri"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="btn_Close" Content="Close" Margin="203,390,89,0" VerticalAlignment="Top" Height="37" Click="btn_Close_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="FontFamily" Value="Calibri"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Label x:Name="lbl_UserName" Content="User Name :" HorizontalAlignment="Left" Margin="56,165,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Calibri" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.527,0.529"/>
+        <Label x:Name="lbl_Password" Content="Password :" HorizontalAlignment="Left" Margin="56,262,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Calibri" FontSize="18" FontWeight="Bold" RenderTransformOrigin="0.527,0.529"/>
+        <Label x:Name="lbl_Message" Content="" Margin="56,480,56,0" VerticalAlignment="Top" 
+               Foreground="Maroon" FontFamily="Calibri" FontSize="14" FontWeight="Bold" Height="49" HorizontalContentAlignment="Center"/>
+
+        <Button x:Name="btn_Quit" HorizontalAlignment="Left" Margin="372,10,0,0" VerticalAlignment="Top" Click="btn_Close_Click" >
+            <materialDesign:PackIcon Kind="Close"></materialDesign:PackIcon>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="18"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Gray"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+    <Window.Resources>
+        <Style TargetType="PasswordBox">
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border CornerRadius="4" x:Name="Bd" Background="{DynamicResource WindowBackgroundBrush}" BorderBrush="White" BorderThickness="2" OpacityMask="{x:Null}">
+                            <ScrollViewer SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" x:Name="PART_ContentHost" Template="{DynamicResource ScrollViewerControlTemplate1}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+</Window>

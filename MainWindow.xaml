@@ -1,0 +1,622 @@
+﻿<Window x:Class="RfReader_demo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RfReader_demo"
+        mc:Ignorable="d"
+        Icon="Icon.ico"
+        Title="Rf Reader" Height="620.667" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#e8e8e8" FontFamily="Champagne &amp; Limousines" WindowStyle="None"
+        BorderThickness="1"
+        >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="White" Margin="15,13,0,546" Grid.RowSpan="2">
+            <Grid x:Name="grdButtons" Margin="-15,-4,0,0">
+
+                <StackPanel Orientation="Horizontal" Margin="0,0">
+                    <Button x:Name="btnLive" Width="198"  Foreground="White" Margin="0,2,0,-2" Padding="0,5,10,0" Click="btnLive_Click">
+                        <StackPanel Orientation="Horizontal" Visibility="Visible">
+                            <materialDesign:PackIcon Kind="Launch" Width="46" Height="25" Margin="-10,0,0,2"/>
+                            <TextBlock x:Name="txtBlock_BtnLive" Text="Go Live" Padding="0,8,10,0" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="0"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Green"/>
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Lime"></Setter>
+                                        <Setter Property="Foreground" Value="White"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btn_TestConnection" Width="200" Margin="0,2,0,-2" Padding="0,5,0,0" Click="btn_TestConnection_Click">
+                        <StackPanel Orientation="Horizontal" Visibility="Visible">
+                            <materialDesign:PackIcon Kind="SettingsApplications" Width="40" Height="25" Margin="0,0,0,2"/>
+                            <TextBlock Text="Test Config" Padding="0,8,0,0" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="0"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#0073c4"/>
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="White"></Setter>
+                                        <Setter Property="Foreground" Value="#0073c4"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btn_DbConfig" Width="200" Margin="0,2,0,-2" Padding="0,5,0,0" Cursor="Hand" Click="btn_DbConfig_Click">
+                        <StackPanel Orientation="Horizontal" Visibility="Visible">
+                            <materialDesign:PackIcon Kind="Notebook" Width="40" Height="25" Margin="0,0,0,2"/>
+                            <TextBlock Text="Open Config File" Padding="0,7,0,0" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="0"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0,0,2,0"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#0073c4"/>
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="White"></Setter>
+                                        <Setter Property="Foreground" Value="#0073c4"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="btn_OpenLogFile" Width="200" Margin="0,2,0,-2" Padding="0,5,0,0" Click="btn_OpenLogFile_Click">
+                        <StackPanel Orientation="Horizontal" Visibility="Visible">
+                            <materialDesign:PackIcon Kind="Assignment" Width="40" Height="25" Margin="0,0,0,2"/>
+                            <TextBlock Text="Open Log File" Padding="0,7,0,0" FontWeight="Bold"></TextBlock>
+                        </StackPanel>
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="0"/>
+                                <Setter Property="BorderBrush" Value="White"/>
+                                <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="#0073c4"/>
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="White"></Setter>
+                                        <Setter Property="Foreground" Value="#0073c4"></Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="30*"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                    <RowDefinition Height="50*"></RowDefinition>
+                    <RowDefinition Height="25"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Grid.Column="0" Background="#3f3f3f" Margin="0,15,2.50,134" Grid.RowSpan="2">
+                    <Label Foreground="White" Margin="0,0,38,0" FontFamily="Arial" FontWeight="Bold" Padding="6,8,0,0">Database Config</Label>
+                </Grid>
+
+                <Grid Grid.Row="1" Grid.Column="0" Background="White" Margin="0,20,0,46" Grid.RowSpan="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Grid.Column="0">
+                            <Label Margin="6,1,14,3" FontWeight="Bold" FontFamily="Calibri">IP Address</Label>
+                        </Grid>
+                        <Grid Grid.Row="0" Grid.Column="1">
+                            <Label Margin="0,1,10,1" FontWeight="Bold" FontFamily="Calibri">Port Number</Label>
+                        </Grid>
+
+                        <Grid Grid.Column="0" Margin="0,8,0,17.5" Grid.RowSpan="2">
+                            <TextBox Margin="5,14,5,-11.5" x:Name="txt_IPAddress" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1">
+                            <TextBox Margin="0,-5,6,7" x:Name="txt_PortNumber" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1" ></TextBox>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0">
+                            <Label Margin="6,-1,14,6" FontWeight="Bold" FontFamily="Calibri">Server Name</Label>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1" Margin="0,7,0,17.5" Grid.RowSpan="2">
+                            <Label Margin="0,18,10,-16.5" FontWeight="Bold" FontFamily="Calibri">Database Name</Label>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="0">
+                            <TextBox Margin="6,-6,5,8" x:Name="txt_ServerName" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="1" Margin="0,8.5,0,17.5" Grid.RowSpan="2">
+                            <TextBox Margin="1,12,5,-10" x:Name="txt_DatabaseName" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1" ></TextBox>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="0" Margin="0,6.5,0,12" Grid.RowSpan="2">
+                            <Label Margin="6,20,14,-15.5" FontWeight="Bold" FontFamily="Calibri">Username</Label>
+                        </Grid>
+                        <Grid Grid.Row="3" Grid.Column="1" Margin="0,21,0,4" Grid.RowSpan="2">
+                            <Label Margin="0,5,10,-1" FontWeight="Bold" FontFamily="Calibri">Password</Label>
+                        </Grid>
+
+                        <Grid Grid.Row="4" Grid.Column="0" Margin="0,8.5,0,17.5" Grid.RowSpan="2">
+                            <TextBox Margin="6,13,4,-11" x:Name="txt_Username" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1" ></TextBox>
+                        </Grid>
+                        <Grid Grid.Row="4" Grid.Column="1" Margin="0,8.5,0,17.5" Grid.RowSpan="2">
+                            <!--<TextBox Margin="1,1,1,1" x:Name="txt_Password" InputScope="Password"></TextBox>-->
+                            <PasswordBox Margin="1,13,5,-11" x:Name="txt_Password" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1" ></PasswordBox>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="3" Grid.Column="0" Background="#3f3f3f" Margin="0,6,0,13">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Foreground="White" HorizontalAlignment="Left" FontFamily="Arial" FontWeight="Bold" Padding="6,8,0,0">Device Config</Label>
+
+                    </StackPanel>
+                </Grid>
+
+                <Grid Grid.Row="5">
+
+                    <Grid Margin="0,-68,0,89">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition Height="25"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,4,199,21" Background="White" Grid.RowSpan="2">
+                            <Label Margin="6,2,1,-2" FontWeight="Bold" FontFamily="Calibri">Table Name</Label>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="1" Margin="0.5,4,-3,21" Grid.RowSpan="2" Background="White">
+                            <Label Margin="1,3,2.5,-1" FontWeight="Bold" FontFamily="Calibri">Port</Label>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0" Background="White" RenderTransformOrigin="0.49,1.6" Grid.ColumnSpan="2" Margin="0,3,199,151" Grid.RowSpan="2">
+                            <TextBox Margin="6,0,4,0" x:Name="txt_DeviceName" Height="26" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1"></TextBox>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="1" Background="White" RenderTransformOrigin="0.495,0.44" Margin="0.5,1,0,151" Grid.RowSpan="2">
+                            <TextBox Margin="-169,38,259.5,-33" x:Name="txt_DevicePort" Height="27" Padding="4,5,0,0" BorderBrush="LightGray" BorderThickness="1"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,8,199,113" Background="White">
+                            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Background="White" Padding="8,7,0,0" BorderBrush="LightGray" BorderThickness="1"
+                                      Margin="202,-28,-195,0" VerticalAlignment="Top" Width="193" Height="26"/>
+                        </Grid>
+                        <Grid Grid.Row="3" RenderTransformOrigin="0.212,0.547" Margin="0.5,8,0,113" Grid.Column="1" Background="White">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,2,6,-27">
+                                <Button Margin="1,1,1,32" x:Name="btn_AddNewRow" Content="Add" Width="70" Click="btn_AddNewRow_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="3"/>
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderThickness" Value="2"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Black"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="White"></Setter>
+                                                    <Setter Property="Foreground" Value="Black"></Setter>
+                                                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                                                    <Setter Property="BorderThickness" Value="2"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button x:Name="btn_CancelEdit" Width="70" Content="Cancel" Margin="1,1,1,32" Click="btn_CancelEdit_Click">
+                                    <Button.Resources>
+                                        <Style TargetType="{x:Type Border}">
+                                            <Setter Property="CornerRadius" Value="3"/>
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderThickness" Value="2"/>
+                                        </Style>
+                                    </Button.Resources>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" Value="Black"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="FontWeight" Value="Bold"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border Background="{TemplateBinding Background}">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="White"></Setter>
+                                                    <Setter Property="Foreground" Value="Black"></Setter>
+                                                    <Setter Property="BorderBrush" Value="Black"></Setter>
+                                                    <Setter Property="BorderThickness" Value="2"></Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.ColumnSpan="2" Margin="0,46,0,-59" Background="White" Height="172" VerticalAlignment="Top">
+                            <DataGrid x:Name="dg_Devices" AutoGenerateColumns="False" Margin="6,0,5,10" ItemsSource="{Binding Devices}" IsReadOnly="True" BorderBrush="Black" Background="White" BorderThickness="0" HeadersVisibility="Column">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Table Name" Binding="{Binding DeviceName}" Width="50*"></DataGridTextColumn>
+                                    <DataGridTextColumn Header="Port Number" Binding="{Binding DevicePort}" Width="30*"></DataGridTextColumn>
+                                    <DataGridTemplateColumn Width="10*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="btnEdit_DataGrid" Height="30" Width="38" Background="White" 
+                                                        Cursor="Hand" HorizontalAlignment="Left" Margin="-3,-7,0,0" Click="btnEdit_DataGrid_Click"
+                                                        Padding="0,0,4,0" >
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="Edit" Width="30" Height="20" Foreground="Black" Margin="0,-3,0,0"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTemplateColumn Width="10*">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="btnDelete_DataGrid" Height="30" Width="38" Background="White"  
+                                                        Cursor="Hand" HorizontalAlignment="Left" Margin="-6,-7,0,0" Click="btnDelete_DataGrid_Click">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <materialDesign:PackIcon Kind="Delete" BorderThickness="0" Width="30" Height="20" Foreground="Black" Margin="2,-3,0,0"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                </DataGrid.Columns>
+                                <DataGrid.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="Background" Value="White"></Setter>
+                                        <Setter Property="Foreground" Value="Gray"></Setter>
+                                        <Setter Property="FontSize" Value="14"></Setter>
+                                        <Setter Property="Height" Value="30"></Setter>
+                                        <Setter Property="BorderBrush" Value="LightGray"></Setter>
+                                        <Setter Property="BorderThickness" Value="1"></Setter>
+                                        <Setter Property="Padding" Value="4,5,0,0"></Setter>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </DataGrid.CellStyle>
+                                <DataGrid.ColumnHeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="Background" Value="Black"></Setter>
+                                        <Setter Property="Foreground" Value="White"></Setter>
+                                        <Setter Property="Height" Value="34"></Setter>
+                                        <Setter Property="BorderThickness" Value="0,0,1,0"></Setter>
+                                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                                        <Setter Property="Padding" Value="6,0,0,0"></Setter>
+                                        <Setter Property="FontSize" Value="15"></Setter>
+                                    </Style>
+                                </DataGrid.ColumnHeaderStyle>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="5" Grid.Column="0" Margin="0,223,0,0" Grid.RowSpan="2" Background="White">
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Width="108" x:Name="btn_Save" Margin="2,2,2,10" Click="btn_Save_Click"  >
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="CheckMultiple" Width="30" Height="25" Margin="0,2,0,0"/>
+                                <TextBlock Text="Save" Padding="5,6,0,0" FontSize="14" FontWeight="Bold"></TextBlock>
+                            </StackPanel>
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="CornerRadius" Value="0"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#0073c4"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                            <Setter Property="BorderBrush" Value="#0073c4"></Setter>
+                                            <Setter Property="BorderThickness" Value="2"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Width="108" Margin="2,2,6,10">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Close" Width="30" Height="25" Margin="0,2,0,0"/>
+                                <TextBlock Text="Cancel" Padding="0,6,0,0" FontSize="14" FontWeight="Bold"></TextBlock>
+                            </StackPanel>
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="CornerRadius" Value="0"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="Foreground" Value="Black" />
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                <Border Background="{TemplateBinding Background}">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#0073c4"></Setter>
+                                            <Setter Property="Foreground" Value="White"></Setter>
+                                            <Setter Property="BorderBrush" Value="#0073c4"></Setter>
+                                            <Setter Property="BorderThickness" Value="2"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Grid.Column="0" Background="#3f3f3f" Margin="-.50,15,0,515" Grid.RowSpan="2">
+                <Label Foreground="White" Margin="0,0,31,0" FontFamily="Arial" FontWeight="Bold" Padding="6,8,0,0">Todays Log</Label>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0" Background="White" Margin="0,19,1,0">
+                <RichTextBox x:Name="txtLogs" Margin="4,4,3,5" BorderBrush="Black" BorderThickness="1" VerticalScrollBarVisibility="Visible" TextChanged="txtLogs_TextChanged">
+                </RichTextBox>
+            </Grid>
+        </Grid>
+
+
+        <Grid x:Name="grdTitle" Grid.ColumnSpan="2" Background="#3f3f3f" Margin="0,0,0,19" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="964*"/>
+            </Grid.ColumnDefinitions>
+            <Label HorizontalAlignment="Center" Foreground="White" Margin="100,3,100,4" RenderTransformOrigin="0.5,0.5" Grid.Column="2" FontFamily="Calibri" FontSize="22" FontWeight="Bold">
+                RF READER
+            </Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2" Margin="0,0,8,0">
+                <Button x:Name="btn_ChangePassword" Width="25" Height="25" Cursor="Hand" Click="btn_ChangePassword_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="0"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="White"></Setter>
+                                    <Setter Property="Foreground" Value="Black"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <materialDesign:PackIcon Kind="Account"></materialDesign:PackIcon>
+                </Button>
+                <Button x:Name="btn_Quit" Width="25" Height="25" Click="btn_Quit_Click" Cursor="Hand">
+                    <materialDesign:PackIcon Kind="Power"></materialDesign:PackIcon>
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="0"/>
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Foreground" Value="White" />
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="White"></Setter>
+                                    <Setter Property="Foreground" Value="Black"></Setter>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <wpfTool:BusyIndicator x:Name="loader" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="400,7,428,86" Grid.Row="3" Grid.ColumnSpan="2">
+
+        </wpfTool:BusyIndicator>
+
+    </Grid>
+
+</Window>

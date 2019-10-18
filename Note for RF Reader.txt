@@ -1,0 +1,6 @@
+1. When creating table for data insertion in Oracle, below three columns is mandatory for that table.
+ ~ ID (type number, make it auto incremented)
+ ~ RFID (type number)
+ ~ SCANTIME (type date)
+
+Note: Make sure the columns names and type is same as described above.
